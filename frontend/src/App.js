@@ -15,7 +15,6 @@ export default function App() {
 	const { authInfo } = useAuth();
 
 	if (authInfo.isLoggedIn) {
-		console.log(authInfo);
 		return (
 			<div className="flex dark:bg-primary bg-white">
 				<Navbar />

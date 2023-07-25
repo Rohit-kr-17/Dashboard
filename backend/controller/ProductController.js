@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require("uuid");
 exports.createProduct = async (req, res) => {
 	const user = req.user;
 	const { name, provider } = req.body;
-	console.log(user);
 	const apiKey = uuidv4();
 	const newProduct = new Product({ name, provider, user, apiKey });
 	await newProduct.save();

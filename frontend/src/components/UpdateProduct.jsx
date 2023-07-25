@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import CustomInput from "./form/CustomInput";
 import { toast } from "react-toastify";
-import { createProduct, updateProduct } from "../api/product";
-const defaultProductInfo = {
-	id: "",
-	name: "",
-	provider: "",
-};
+import { updateProduct } from "../api/product";
 
 export default function CreateProduct({
 	setUpdate,

@@ -2,11 +2,7 @@ import React from "react";
 import { deleteProduct } from "../api/product";
 import { toast } from "react-toastify";
 
-export default function DeleteProduct({
-	setDeleteProduct,
-	setDeleteProductId,
-	deleteProductId,
-}) {
+export default function DeleteProduct({ setDeleteProduct, deleteProductId }) {
 	const handleClick = async ({ target }) => {
 		const { value } = target;
 		console.log(value);

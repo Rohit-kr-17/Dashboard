@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
+
+// ("process.env.MONGO_URI");
 mongoose
-	.connect(
-		"mongodb+srv://Rohit:RohitKumar@dashboard.uvamjst.mongodb.net/?retryWrites=true&w=majority"
-	)
+	.connect(process.env.MONGO_URI)
 	.then(() => {
-		console.log("Db Is Connectd");
+		console.log("Db is connected");
 	})
-	.catch((err) => {
-		console.log("DB connection failed", err);
+	.catch((ex) => {
+		console.log("DB connection failed:", ex);
 	});

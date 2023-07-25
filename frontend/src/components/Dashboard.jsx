@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import CreateProduct from "./CreateProduct";
 import { IoIosAdd } from "react-icons/io";
-import { useAuth } from "./NotFound";
 import { getProduct } from "../api/product";
 import { toast } from "react-toastify";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";

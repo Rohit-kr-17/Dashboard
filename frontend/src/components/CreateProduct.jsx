@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import CustomInput from "./form/CustomInput";
 import { toast } from "react-toastify";

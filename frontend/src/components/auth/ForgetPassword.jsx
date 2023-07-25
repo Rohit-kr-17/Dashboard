@@ -40,14 +40,14 @@ export default function ForgetPassword() {
 						className="border-2 p-2 w-full rounded bg-gray-400 flex justify-center items-center text-white border-gray-400 cursor-pointer hover:bg-white hover:text-black transition ease-in-out duration-500"
 						value="Sign in"
 					>
-						Sign In
+						Confirm Mail
 					</button>
 					<div className="flex justify-between">
 						<Link
 							className="  transition  text-gray-500 hover:text-black"
-							to="/auth/forget-password"
+							to="/auth/signin"
 						>
-							Forget password
+							Sign In
 						</Link>
 						<Link
 							className="  transition  text-gray-500 hover:text-black"

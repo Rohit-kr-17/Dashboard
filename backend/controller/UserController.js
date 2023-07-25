@@ -1,20 +1,19 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 exports.create = async (req, res) => {
-	const { name, email, password } = req.body;
+	const { name, email, keyword, password } = req.body;
 	const userExist = await User.findOne({ email });
 	if (userExist) {
-		res.send("User already Exist");
+		res.status(401).json({ error: "User already exist" });
 		return;
 	}
-	const newUser = new User({ name, email, password });
+	const newUser = new User({ name, email, keyword, password });
 	await newUser.save();
 	res.status(201).json({
 		user: {
 			id: newUser._id,
 			name: newUser.name,
 			email: newUser.email,
-			password: newUser.password,
 		},
 	});
 };
@@ -22,12 +21,12 @@ exports.signin = async (req, res) => {
 	const { email, password } = req.body;
 	const user = await User.findOne({ email });
 	if (!user) {
-		res.json("Credentials mismatched");
+		res.json({ error: "Credentials mismatched" });
 		return;
 	}
 	const matched = await user.comparePassword(password);
 	if (!matched) {
-		res.json("Credentials mismatched");
+		res.json({ error: "Credentials mismatched" });
 		return;
 	}
 	const { _id, name } = user;
@@ -46,4 +45,24 @@ exports.isAuthenticated = async (req, res) => {
 			email: user.email,
 		},
 	});
+};
+exports.forgetPassword = async (req, res) => {
+	const { email } = req.body;
+
+	const user = await User.findOne({ email });
+	if (!user) {
+		res.json({ error: "User doesn't exist" });
+		return;
+	}
+	return res.json({ userId: user._id });
+};
+exports.resetPassword = async (req, res) => {
+	const { keyword, newPassword, userId } = req.body;
+	const user = await User.findById(userId);
+	if (!user) return res.json({ error: "Invalid request" });
+	const matched = await user.compareKeyword(keyword);
+	if (!matched) return res.json({ error: "Incorrect Keyword" });
+	user.password = newPassword;
+	await user.save();
+	res.json({ message: "Password reset Successful" });
 };

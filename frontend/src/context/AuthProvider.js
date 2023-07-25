@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { getIsAuth, signInUser } from "../api/auth";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 const defaultAuthInfo = {
 	profile: null,

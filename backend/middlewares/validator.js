@@ -8,7 +8,16 @@ exports.userValidator = [
 		.isEmpty()
 		.withMessage("Password is invalid")
 		.isLength({ min: 6 })
-		.withMessage("Password must be 6 charactes long"),
+		.withMessage("Password must be 6 characters long"),
+];
+exports.validatePassword = [
+	check("newPassword")
+		.trim()
+		.not()
+		.isEmpty()
+		.withMessage("Password is invalid")
+		.isLength({ min: 6 })
+		.withMessage("Password must be 6 characters long"),
 ];
 exports.signInValidator = [
 	check("email").normalizeEmail().isEmail().withMessage("Email is invalid"),

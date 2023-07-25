@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import Dashboard from "./components/Dashboard";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Route, Routes, redirect } from "react-router-dom";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
 import { AuthContext } from "./context/AuthProvider";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import ResetPassword from "./components/auth/ResetPassword";
+import NotFound from "./components/NotFound";
 export const useAuth = () => useContext(AuthContext);
 
 export default function App() {
@@ -15,6 +15,7 @@ export default function App() {
 		return (
 			<Routes>
 				<Route path="/" element={<Dashboard />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		);
 	}
@@ -25,7 +26,7 @@ export default function App() {
 				<Route path="/auth/signup" element={<Signup />} />
 				<Route path="/auth/forget-password" element={<ForgetPassword />} />
 				<Route path="/auth/reset-password" element={<ResetPassword />} />
-				<Route path="*" element={<Signin />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</>
 	);

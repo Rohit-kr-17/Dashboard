@@ -21,11 +21,11 @@ export default function Signin() {
 		password: "",
 	});
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { ok, error } = validateUserInfo(userInfo);
 		if (!ok) return toast.error(error);
-		const response = handleLogin(userInfo.email, userInfo.password);
+		const response = await handleLogin(userInfo.email, userInfo.password);
 		if (response.error) return toast.error("Login Failed");
 		toast.success("Logged in");
 	};

@@ -14,12 +14,12 @@ export default function AuthProvider({ children }) {
 	const navigate = useNavigate();
 	const [authInfo, setAuthInfo] = useState({ ...defaultAuthInfo });
 	const handleLogin = async (email, password) => {
-		console.log("hello");
 		setAuthInfo({ ...authInfo, isPending: true });
 		const { error, user } = await signInUser({ email, password });
 		if (error) {
+			setAuthInfo({ ...authInfo, isPending: false, error });
 			toast.error(error);
-			return setAuthInfo({ ...authInfo, isPending: false, error });
+			return error;
 		}
 		navigate("/", { replace: true });
 		setAuthInfo({
@@ -29,6 +29,7 @@ export default function AuthProvider({ children }) {
 			error: "",
 		});
 		localStorage.setItem("auth-token", user.token);
+		toast.success("Logged in");
 	};
 	const isAuth = async () => {
 		const token = localStorage.getItem("auth-token");

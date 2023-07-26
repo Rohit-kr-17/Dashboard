@@ -25,9 +25,7 @@ export default function Signin() {
 		e.preventDefault();
 		const { ok, error } = validateUserInfo(userInfo);
 		if (!ok) return toast.error(error);
-		const response = await handleLogin(userInfo.email, userInfo.password);
-		if (response.error) return toast.error("Login Failed");
-		toast.success("Logged in");
+		handleLogin(userInfo.email, userInfo.password);
 	};
 
 	const handleChange = ({ target }) => {

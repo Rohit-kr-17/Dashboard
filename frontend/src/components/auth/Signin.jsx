@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import CustomInput from "../form/CustomInput";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
+import Submit from "../form/Submit";
+import { useAuth } from "../../hooks";
 const validateUserInfo = ({ name, email, password }) => {
 	if (!email?.trim()) return { ok: false, error: "Email is missing!" };
 	if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
@@ -13,9 +14,10 @@ const validateUserInfo = ({ name, email, password }) => {
 
 	return { ok: true };
 };
-export const useAuth = () => useContext(AuthContext);
+
 export default function Signin() {
-	const { handleLogin } = useAuth();
+	const { handleLogin, authInfo } = useAuth();
+	const { isPending } = authInfo;
 	const [userInfo, setUserInfo] = useState({
 		email: "",
 		password: "",
@@ -61,13 +63,7 @@ export default function Signin() {
 							type="password"
 						/>
 
-						<button
-							type="submit"
-							className="border-2 p-2 w-full rounded bg-gray-400 flex justify-center items-center text-white border-gray-400 cursor-pointer hover:bg-white hover:text-black transition ease-in-out duration-500"
-							value="Sign in"
-						>
-							Sign In
-						</button>
+						<Submit value="Sign in" busy={isPending} />
 						<div className="flex justify-between">
 							<Link
 								className="  transition  text-gray-500 hover:text-black"

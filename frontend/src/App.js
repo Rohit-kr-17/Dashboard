@@ -21,7 +21,7 @@ export default function App() {
 				<div className="flex-1 p-2 max-w-screen-sl">
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
-						<Route path="*" element={<Dashboard />} />
+						<Route path="*" element={<Navigate replace to="/" />} />
 					</Routes>
 				</div>
 			</div>

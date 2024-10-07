@@ -3,6 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 require("express-async-errors");
 require("./db");
+const axios = require("axios")
 
 const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
@@ -11,7 +12,7 @@ const { polling } = require("./controller/UserController");
 
 const pingBackend = async () => {
     try {
-     	await fetch('https://productdashboard-qp9e.onrender.com/user/');
+     	await axios.get('https://productdashboard-qp9e.onrender.com/user/');
     } catch (error) {
         console.error('Error pinging backend:', error);
     }

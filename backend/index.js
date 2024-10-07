@@ -8,6 +8,16 @@ const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
 const { errorHandler } = require("./middlewares/error");
 
+const fetchData = async () => {
+    try {
+        // Fetch or prepare the data (you could make a request to an API or database)
+        cachedData = { message: 'Updated data', timestamp: new Date() };
+        console.log('Data fetched:', cachedData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+setInterval(fetchData, 5000);
 const app = express();
 app.use(cors());
 app.use(express.json());

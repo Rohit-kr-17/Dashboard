@@ -66,3 +66,7 @@ exports.resetPassword = async (req, res) => {
 	await user.save();
 	res.json({ message: "Password reset Successful" });
 };
+exports.polling = async (req,res)=>{
+	console.log("Hello from Polling");
+	res.json({message:"Hello"})
+}

@@ -7,17 +7,16 @@ require("./db");
 const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
 const { errorHandler } = require("./middlewares/error");
+const { polling } = require("./controller/UserController");
 
-const fetchData = async () => {
+const pingBackend = async () => {
     try {
-        // Fetch or prepare the data (you could make a request to an API or database)
-        cachedData = { message: 'Updated data', timestamp: new Date() };
-        console.log('Data fetched:', cachedData);
+     	await fetch('https://productdashboard-qp9e.onrender.com/user/');
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error pinging backend:', error);
     }
 };
-setInterval(fetchData, 5000);
+setInterval(pingBackend, 15000);
 const app = express();
 app.use(cors());
 app.use(express.json());

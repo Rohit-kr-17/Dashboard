@@ -13,7 +13,9 @@ const {
 	isAuthenticated,
 	forgetPassword,
 	resetPassword,
+	polling,
 } = require("../controller/UserController.js");
+router.get("/", polling)
 router.post("/sign-up", userValidator, validate, create);
 router.post("/sign-in", signInValidator, validate, signin);
 router.post("/forget-password", forgetPassword);
